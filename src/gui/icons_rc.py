@@ -1,0 +1,1 @@
+/home/bulb/Games/Doki Doki Mod Swapper/src/resources/icons.py
