@@ -4,3 +4,6 @@ mods
 venv
 __pycache__
 config.json
+.vscode
+testing
+.gitignore
