@@ -2,7 +2,7 @@ from pathlib import Path
 import logging as log
 log.basicConfig(level=log.NOTSET)
 
-def check_ddms_tree(ddms_dir: str) -> int:
+def check_dossier_tree(ddms_dir: str) -> int:
 	# look in base/ and quit if there's nothing in there 
 	base_dir = Path.cwd() / 'base'
 	base_files = sorted(base_dir.glob('*'))

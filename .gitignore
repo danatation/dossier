@@ -1,0 +1,8 @@
+appdata
+base
+mods
+venv
+__pycache__
+config.toml
+.vscode
+testing
