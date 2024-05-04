@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>634</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="1" column="3">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="1">
+     <spacer name="horizontalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="0" colspan="5">
+     <widget class="QTabWidget" name="mainTabWidget">
+      <property name="tabPosition">
+       <enum>QTabWidget::TabPosition::North</enum>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <property name="documentMode">
+       <bool>true</bool>
+      </property>
+      <property name="tabsClosable">
+       <bool>false</bool>
+      </property>
+      <property name="movable">
+       <bool>false</bool>
+      </property>
+      <widget class="QWidget" name="libraryTab">
+       <attribute name="title">
+        <string>Library</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="1">
+         <widget class="QPushButton" name="libraryImportButton">
+          <property name="text">
+           <string>Import</string>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QPushButton" name="librarySettingsButton">
+          <property name="text">
+           <string>Settings</string>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" colspan="3">
+         <widget class="QSplitter" name="librarySplitter">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <widget class="QScrollArea" name="libraryModScrollArea">
+           <property name="horizontalScrollBarPolicy">
+            <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+           </property>
+           <property name="sizeAdjustPolicy">
+            <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
+           </property>
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="libraryModScrollAreaWidgetContents">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>56</width>
+              <height>519</height>
+             </rect>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_4">
+             <property name="leftMargin">
+              <number>4</number>
+             </property>
+            </layout>
+           </widget>
+          </widget>
+          <widget class="QTabWidget" name="libraryViewTabWidget">
+           <property name="tabPosition">
+            <enum>QTabWidget::TabPosition::South</enum>
+           </property>
+           <property name="currentIndex">
+            <number>0</number>
+           </property>
+           <property name="documentMode">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="libraryNormalViewTab">
+            <attribute name="title">
+             <string>Normal View</string>
+            </attribute>
+            <layout class="QGridLayout" name="gridLayout_6">
+             <item row="0" column="0">
+              <widget class="QScrollArea" name="libraryNormalViewScrollArea">
+               <property name="widgetResizable">
+                <bool>true</bool>
+               </property>
+               <widget class="QWidget" name="libraryNormalViewScrollAreaWidgetContents">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>709</width>
+                  <height>478</height>
+                 </rect>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_9"/>
+               </widget>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="libraryAssetViewTab">
+            <attribute name="title">
+             <string>Asset View</string>
+            </attribute>
+            <layout class="QGridLayout" name="gridLayout">
+             <item row="0" column="0">
+              <widget class="QScrollArea" name="libraryAssetViewScrollArea">
+               <property name="widgetResizable">
+                <bool>true</bool>
+               </property>
+               <widget class="QWidget" name="libraryAssetViewScrollAreaWidgetContents">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>709</width>
+                  <height>478</height>
+                 </rect>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_8"/>
+               </widget>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="storeTab">
+       <attribute name="title">
+        <string>Store</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="1">
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="storeSettingsButton">
+          <property name="text">
+           <string>Settings</string>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="3">
+         <widget class="QTabWidget" name="storeCategoryTab">
+          <property name="tabPosition">
+           <enum>QTabWidget::TabPosition::South</enum>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <property name="elideMode">
+           <enum>Qt::TextElideMode::ElideNone</enum>
+          </property>
+          <widget class="QWidget" name="storeCategory_01">
+           <attribute name="title">
+            <string>Mod List</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_7"/>
+          </widget>
+          <widget class="QWidget" name="storeCategory_02">
+           <attribute name="title">
+            <string>Multiple/All</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_12"/>
+          </widget>
+          <widget class="QWidget" name="storeCategory_03">
+           <attribute name="title">
+            <string>Yuri</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_23"/>
+          </widget>
+          <widget class="QWidget" name="storeCategory_04">
+           <attribute name="title">
+            <string>Natsuki</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_24"/>
+          </widget>
+          <widget class="QWidget" name="storeCategory_05">
+           <attribute name="title">
+            <string>Sayori</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_25"/>
+          </widget>
+          <widget class="QWidget" name="storeCategory_06">
+           <attribute name="title">
+            <string>Monika</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_26"/>
+          </widget>
+          <widget class="QWidget" name="storeCategory_07">
+           <attribute name="title">
+            <string>Drama</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_27"/>
+          </widget>
+          <widget class="QWidget" name="storeCategory_08">
+           <attribute name="title">
+            <string>Horror</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_28"/>
+          </widget>
+          <widget class="QWidget" name="storeCategory_09">
+           <attribute name="title">
+            <string>Meta</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_29"/>
+          </widget>
+          <widget class="QWidget" name="storeCategory_10">
+           <attribute name="title">
+            <string>Romance</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_30"/>
+          </widget>
+          <widget class="QWidget" name="storeCategory_11">
+           <attribute name="title">
+            <string>Adventure</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_31"/>
+          </widget>
+          <widget class="QWidget" name="storeCategory_12">
+           <attribute name="title">
+            <string>Action</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_32"/>
+          </widget>
+          <widget class="QWidget" name="storeCategory_13">
+           <attribute name="title">
+            <string>Slice of Life</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_33"/>
+          </widget>
+          <widget class="QWidget" name="storeCategory_14">
+           <attribute name="title">
+            <string>Comedy/Meme</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_34"/>
+          </widget>
+          <widget class="QWidget" name="storeCategory_15">
+           <attribute name="title">
+            <string>Holiday</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_35"/>
+          </widget>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="storeFetchModListButton">
+          <property name="text">
+           <string>Fetch Mod List</string>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLineEdit" name="searchLineEdit">
+      <property name="dragEnabled">
+       <bool>true</bool>
+      </property>
+      <property name="placeholderText">
+       <string>Search...</string>
+      </property>
+      <property name="clearButtonEnabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QLabel" name="statusBar">
+      <property name="text">
+       <string>Status Bar</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::TextFormat::AutoText</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

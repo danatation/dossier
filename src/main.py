@@ -1,28 +1,21 @@
-from PySide6.QtWidgets import QApplication
-from utils.compilers import *
-from utils.dirs import *
-from utils.mods import *
-from utils.symlinks import *
 from pathlib import Path
-from gui import mainwindow_ui, ddms
-import sys
+import sys, importlib
 
-# TODO move appdata/ folder inside of the mods game/ folder and rename it to ddms/
-# TODO basic gui with mod importing and selection and playation
-# incorporate the mod list and fix that weird bug with the merged cells
-# implement the asset viewer with rpatool and unrpyc
+from PySide6.QtWidgets import QApplication
+
+from utils.gui import compile_ui_file, compile_qt_resources
 
 if __name__ == '__main__':
-	# ui_path = Path.cwd() / 'src' / 'gui' / 'mainwindow.ui'
-	# compilers.compile_ui(ui_path, 'mainwindow_ui.py')
-	# qrc_path = Path.cwd() / 'src' / 'resources' / 'icons.qrc'
-	# compilers.compile_qrc(qrc_path, 'icons.py')
-	# app = QApplication(sys.argv)
-	# window = ddms.MainWindow()
-	# window.show()
-	# sys.exit(app.exec())	
-	
-	# setup_mod('Impossible')
-	run_mod('Impossible')
 
-	''' gui will come in later '''
+	testing = True
+	if testing:
+		ui_path = Path.cwd() / 'src' / 'qt' / 'mainwindow.ui'
+		compile_ui_file(ui_path, 'mainwindow_ui.py')
+		qrc_path = Path.cwd() / 'src' / 'qt' / 'icons.qrc'
+		compile_qt_resources(qrc_path, 'icon_rc.py')
+
+	dossier_gui = importlib.import_module('utils.gui')
+	app = QApplication(sys.argv)
+	window = dossier_gui.MainWindow()
+	window.show()
+	sys.exit(app.exec())	
