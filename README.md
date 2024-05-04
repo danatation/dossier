@@ -8,7 +8,7 @@ I will continue working on this, but for now I really don't want to
 The only way you can actually run and install nods is by editing the linked main.py file. I don't even know if this works on Windows like this.
 
 1. Install the necessary packages via pip from src/requirements.txt
-2. Uncomment the Ot code
+2. Uncomment the Qt code
 3. Import the necessary functions
 4. Run the Python script
 
