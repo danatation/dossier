@@ -1,5 +1,5 @@
 # Dossier
-Dossier will be a mod manager for the game Doki Doki Literature Club, made in Qt6. I currently have 0 motivation for this, so here is the unfinished source code.
+Dossier will be a mod manager for the game Doki Doki Literature Club, made in Qt 6. I currently have 0 motivation for this, so here is the unfinished source code.
 
 I will continue working on this, but for now I really don't want to
 
