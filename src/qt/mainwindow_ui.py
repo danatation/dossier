@@ -121,45 +121,35 @@ class Ui_MainWindow(object):
         self.gridLayout_9 = QGridLayout(self.libraryModInfoScrollAreaWidgetContents)
         self.gridLayout_9.setObjectName(u"gridLayout_9")
         self.gridLayout_9.setContentsMargins(16, 32, 16, 0)
-        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.libraryModInfoName = QLabel(self.libraryModInfoScrollAreaWidgetContents)
+        self.libraryModInfoName.setObjectName(u"libraryModInfoName")
 
-        self.gridLayout_9.addItem(self.horizontalSpacer_7, 2, 0, 1, 1)
+        self.gridLayout_9.addWidget(self.libraryModInfoName, 1, 1, 1, 2, Qt.AlignHCenter)
 
-        self.libraryModInfoScreenshots = QLabel(self.libraryModInfoScrollAreaWidgetContents)
-        self.libraryModInfoScreenshots.setObjectName(u"libraryModInfoScreenshots")
-        self.libraryModInfoScreenshots.setFrameShadow(QFrame.Plain)
-        self.libraryModInfoScreenshots.setLineWidth(1)
-        self.libraryModInfoScreenshots.setTextFormat(Qt.AutoText)
-        self.libraryModInfoScreenshots.setScaledContents(False)
+        self.libraryModInfoPlay = QPushButton(self.libraryModInfoScrollAreaWidgetContents)
+        self.libraryModInfoPlay.setObjectName(u"libraryModInfoPlay")
 
-        self.gridLayout_9.addWidget(self.libraryModInfoScreenshots, 11, 1, 1, 2, Qt.AlignHCenter)
+        self.gridLayout_9.addWidget(self.libraryModInfoPlay, 3, 1, 1, 1, Qt.AlignRight)
 
-        self.verticalSpacer2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Maximum)
+        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout_9.addItem(self.verticalSpacer2, 4, 0, 1, 4)
+        self.gridLayout_9.addItem(self.horizontalSpacer_11, 8, 0, 1, 1)
+
+        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_9.addItem(self.horizontalSpacer_13, 11, 3, 1, 1)
 
         self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.gridLayout_9.addItem(self.horizontalSpacer_6, 1, 3, 1, 1)
 
-        self.libraryModInfoOptions = QPushButton(self.libraryModInfoScrollAreaWidgetContents)
-        self.libraryModInfoOptions.setObjectName(u"libraryModInfoOptions")
-        self.libraryModInfoOptions.setFlat(False)
+        self.verticalSpacer1 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Maximum)
 
-        self.gridLayout_9.addWidget(self.libraryModInfoOptions, 3, 2, 1, 1, Qt.AlignLeft)
+        self.gridLayout_9.addItem(self.verticalSpacer1, 0, 0, 1, 4)
 
-        self.libraryModInfoDescription = QLabel(self.libraryModInfoScrollAreaWidgetContents)
-        self.libraryModInfoDescription.setObjectName(u"libraryModInfoDescription")
+        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout_9.addWidget(self.libraryModInfoDescription, 5, 1, 1, 2, Qt.AlignHCenter)
-
-        self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_9.addItem(self.horizontalSpacer_12, 8, 3, 1, 1)
-
-        self.verticalSpacer5 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Maximum)
-
-        self.gridLayout_9.addItem(self.verticalSpacer5, 13, 0, 1, 1)
+        self.gridLayout_9.addItem(self.horizontalSpacer_8, 2, 3, 1, 1)
 
         self.libraryModInfoScreenshotsContents = QLabel(self.libraryModInfoScrollAreaWidgetContents)
         self.libraryModInfoScreenshotsContents.setObjectName(u"libraryModInfoScreenshotsContents")
@@ -170,64 +160,31 @@ class Ui_MainWindow(object):
 
         self.gridLayout_9.addWidget(self.libraryModInfoScreenshotsContents, 12, 0, 1, 1)
 
-        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.verticalSpacer4 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Maximum)
 
-        self.gridLayout_9.addItem(self.horizontalSpacer_5, 1, 0, 1, 1)
+        self.gridLayout_9.addItem(self.verticalSpacer4, 10, 0, 1, 1)
 
-        self.libraryModInfoName = QLabel(self.libraryModInfoScrollAreaWidgetContents)
-        self.libraryModInfoName.setObjectName(u"libraryModInfoName")
+        self.libraryModInfoAuthor = QLabel(self.libraryModInfoScrollAreaWidgetContents)
+        self.libraryModInfoAuthor.setObjectName(u"libraryModInfoAuthor")
 
-        self.gridLayout_9.addWidget(self.libraryModInfoName, 1, 1, 1, 2, Qt.AlignHCenter)
+        self.gridLayout_9.addWidget(self.libraryModInfoAuthor, 2, 1, 1, 2, Qt.AlignHCenter)
 
-        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.verticalSpacer5 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Maximum)
 
-        self.gridLayout_9.addItem(self.horizontalSpacer_9, 5, 0, 1, 1)
-
-        self.verticalSpacer3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Maximum)
-
-        self.gridLayout_9.addItem(self.verticalSpacer3, 7, 0, 1, 1)
-
-        self.verticalSpacer1 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Maximum)
-
-        self.gridLayout_9.addItem(self.verticalSpacer1, 0, 0, 1, 4)
-
-        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_9.addItem(self.horizontalSpacer_11, 8, 0, 1, 1)
+        self.gridLayout_9.addItem(self.verticalSpacer5, 13, 0, 1, 1)
 
         self.horizontalSpacer_14 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.gridLayout_9.addItem(self.horizontalSpacer_14, 11, 0, 1, 1)
 
-        self.verticalSpacer4 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Maximum)
+        self.libraryModInfoDescription = QLabel(self.libraryModInfoScrollAreaWidgetContents)
+        self.libraryModInfoDescription.setObjectName(u"libraryModInfoDescription")
 
-        self.gridLayout_9.addItem(self.verticalSpacer4, 10, 0, 1, 1)
+        self.gridLayout_9.addWidget(self.libraryModInfoDescription, 5, 1, 1, 2, Qt.AlignHCenter)
 
-        self.libraryModInfoDescriptionContents = QLabel(self.libraryModInfoScrollAreaWidgetContents)
-        self.libraryModInfoDescriptionContents.setObjectName(u"libraryModInfoDescriptionContents")
+        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout_9.addWidget(self.libraryModInfoDescriptionContents, 6, 0, 1, 2)
-
-        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_9.addItem(self.horizontalSpacer_10, 5, 3, 1, 1)
-
-        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_9.addItem(self.horizontalSpacer_13, 11, 3, 1, 1)
-
-        self.libraryModInfoAdditionalNotesContents = QLabel(self.libraryModInfoScrollAreaWidgetContents)
-        self.libraryModInfoAdditionalNotesContents.setObjectName(u"libraryModInfoAdditionalNotesContents")
-        self.libraryModInfoAdditionalNotesContents.setFrameShadow(QFrame.Plain)
-        self.libraryModInfoAdditionalNotesContents.setLineWidth(1)
-        self.libraryModInfoAdditionalNotesContents.setTextFormat(Qt.AutoText)
-        self.libraryModInfoAdditionalNotesContents.setScaledContents(False)
-
-        self.gridLayout_9.addWidget(self.libraryModInfoAdditionalNotesContents, 9, 0, 1, 1)
-
-        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_9.addItem(self.horizontalSpacer_8, 2, 3, 1, 1)
+        self.gridLayout_9.addItem(self.horizontalSpacer_5, 1, 0, 1, 1)
 
         self.libraryModInfoAdditionalNotes = QLabel(self.libraryModInfoScrollAreaWidgetContents)
         self.libraryModInfoAdditionalNotes.setObjectName(u"libraryModInfoAdditionalNotes")
@@ -238,15 +195,60 @@ class Ui_MainWindow(object):
 
         self.gridLayout_9.addWidget(self.libraryModInfoAdditionalNotes, 8, 1, 1, 2, Qt.AlignHCenter)
 
-        self.libraryModInfoPlay = QPushButton(self.libraryModInfoScrollAreaWidgetContents)
-        self.libraryModInfoPlay.setObjectName(u"libraryModInfoPlay")
+        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout_9.addWidget(self.libraryModInfoPlay, 3, 1, 1, 1, Qt.AlignRight)
+        self.gridLayout_9.addItem(self.horizontalSpacer_7, 2, 0, 1, 1)
 
-        self.libraryModInfoAuthor = QLabel(self.libraryModInfoScrollAreaWidgetContents)
-        self.libraryModInfoAuthor.setObjectName(u"libraryModInfoAuthor")
+        self.verticalSpacer2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Maximum)
 
-        self.gridLayout_9.addWidget(self.libraryModInfoAuthor, 2, 1, 1, 2, Qt.AlignHCenter)
+        self.gridLayout_9.addItem(self.verticalSpacer2, 4, 0, 1, 4)
+
+        self.libraryModInfoDescriptionContents = QLabel(self.libraryModInfoScrollAreaWidgetContents)
+        self.libraryModInfoDescriptionContents.setObjectName(u"libraryModInfoDescriptionContents")
+        self.libraryModInfoDescriptionContents.setWordWrap(True)
+
+        self.gridLayout_9.addWidget(self.libraryModInfoDescriptionContents, 6, 0, 1, 4)
+
+        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_9.addItem(self.horizontalSpacer_9, 5, 0, 1, 1)
+
+        self.verticalSpacer3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Maximum)
+
+        self.gridLayout_9.addItem(self.verticalSpacer3, 7, 0, 1, 1)
+
+        self.libraryModInfoOptions = QPushButton(self.libraryModInfoScrollAreaWidgetContents)
+        self.libraryModInfoOptions.setObjectName(u"libraryModInfoOptions")
+        self.libraryModInfoOptions.setFlat(False)
+
+        self.gridLayout_9.addWidget(self.libraryModInfoOptions, 3, 2, 1, 1, Qt.AlignLeft)
+
+        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_9.addItem(self.horizontalSpacer_10, 5, 3, 1, 1)
+
+        self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_9.addItem(self.horizontalSpacer_12, 8, 3, 1, 1)
+
+        self.libraryModInfoScreenshots = QLabel(self.libraryModInfoScrollAreaWidgetContents)
+        self.libraryModInfoScreenshots.setObjectName(u"libraryModInfoScreenshots")
+        self.libraryModInfoScreenshots.setFrameShadow(QFrame.Plain)
+        self.libraryModInfoScreenshots.setLineWidth(1)
+        self.libraryModInfoScreenshots.setTextFormat(Qt.AutoText)
+        self.libraryModInfoScreenshots.setScaledContents(False)
+
+        self.gridLayout_9.addWidget(self.libraryModInfoScreenshots, 11, 1, 1, 2, Qt.AlignHCenter)
+
+        self.libraryModInfoAdditionalNotesContents = QLabel(self.libraryModInfoScrollAreaWidgetContents)
+        self.libraryModInfoAdditionalNotesContents.setObjectName(u"libraryModInfoAdditionalNotesContents")
+        self.libraryModInfoAdditionalNotesContents.setFrameShadow(QFrame.Plain)
+        self.libraryModInfoAdditionalNotesContents.setLineWidth(1)
+        self.libraryModInfoAdditionalNotesContents.setTextFormat(Qt.AutoText)
+        self.libraryModInfoAdditionalNotesContents.setScaledContents(False)
+        self.libraryModInfoAdditionalNotesContents.setWordWrap(True)
+
+        self.gridLayout_9.addWidget(self.libraryModInfoAdditionalNotesContents, 9, 0, 1, 4)
 
         self.libraryModInfoScrollArea.setWidget(self.libraryModInfoScrollAreaWidgetContents)
 
@@ -438,16 +440,16 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.librarySettingsButton.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
         self.libraryImportButton.setText(QCoreApplication.translate("MainWindow", u"Import", None))
-        self.libraryModInfoScreenshots.setText(QCoreApplication.translate("MainWindow", u"Screenshots", None))
-        self.libraryModInfoOptions.setText(QCoreApplication.translate("MainWindow", u"Options", None))
-        self.libraryModInfoDescription.setText(QCoreApplication.translate("MainWindow", u"Description", None))
-        self.libraryModInfoScreenshotsContents.setText(QCoreApplication.translate("MainWindow", u"Screenshots Text", None))
         self.libraryModInfoName.setText(QCoreApplication.translate("MainWindow", u"Mod Name", None))
-        self.libraryModInfoDescriptionContents.setText(QCoreApplication.translate("MainWindow", u"Description Text", None))
-        self.libraryModInfoAdditionalNotesContents.setText(QCoreApplication.translate("MainWindow", u"Additional Notes Text", None))
-        self.libraryModInfoAdditionalNotes.setText(QCoreApplication.translate("MainWindow", u"Additional Notes", None))
         self.libraryModInfoPlay.setText(QCoreApplication.translate("MainWindow", u"Play", None))
+        self.libraryModInfoScreenshotsContents.setText(QCoreApplication.translate("MainWindow", u"Screenshots Text", None))
         self.libraryModInfoAuthor.setText(QCoreApplication.translate("MainWindow", u"Author", None))
+        self.libraryModInfoDescription.setText(QCoreApplication.translate("MainWindow", u"Description", None))
+        self.libraryModInfoAdditionalNotes.setText(QCoreApplication.translate("MainWindow", u"Additional Notes", None))
+        self.libraryModInfoDescriptionContents.setText(QCoreApplication.translate("MainWindow", u"Description Text", None))
+        self.libraryModInfoOptions.setText(QCoreApplication.translate("MainWindow", u"Options", None))
+        self.libraryModInfoScreenshots.setText(QCoreApplication.translate("MainWindow", u"Screenshots", None))
+        self.libraryModInfoAdditionalNotesContents.setText(QCoreApplication.translate("MainWindow", u"Additional Notes Text", None))
         self.libraryViewTabWidget.setTabText(self.libraryViewTabWidget.indexOf(self.libraryModInfoTab), QCoreApplication.translate("MainWindow", u"Mod Info", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"TODO !!!", None))
         self.libraryViewTabWidget.setTabText(self.libraryViewTabWidget.indexOf(self.libraryAssetViewerTab), QCoreApplication.translate("MainWindow", u"Asset Viewer", None))

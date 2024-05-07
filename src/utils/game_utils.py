@@ -106,7 +106,7 @@ def launch_mod(mod_name: str) -> None:
 		'exec_path' : exec_path,
 		'config_path': config_path,
 		'config_data': config_data,
-		'renpy_version': get_renpy_version(mod_name)
+		'renpy_version': get_renpy_version(get_mod_directory(mod_name))
 	}
 	launch_game(launch_config)
 
