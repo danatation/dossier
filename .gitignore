@@ -6,3 +6,7 @@ __pycache__
 config.toml
 .vscode
 testing
+cache
+build
+dist
+main.spec

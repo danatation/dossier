@@ -21,13 +21,13 @@ directories:
 	symlink_mod
 	delink_mod
 
-mod_utils:
+game_utils:
 	install_mod
-	setup_mod
+	setup_game
 	launch_mod
-	cleanup_mod
+	cleanup_game
 
-mod_info:
+game_info:
 	get_main_launch_script
 	get_renpy_version
 	get_execution_directory

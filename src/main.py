@@ -1,9 +1,11 @@
 from pathlib import Path
 import sys, importlib
+import asyncio
 
 from PySide6.QtWidgets import QApplication
 
-from utils.gui import compile_ui_file, compile_qt_resources
+from utils.gui import compile_qt_resources, compile_ui_file
+from utils.game_utils import setup_game
 
 if __name__ == '__main__':
 

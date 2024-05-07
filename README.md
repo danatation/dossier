@@ -14,18 +14,18 @@ The only way you can actually run and install mods is by editing the linked main
 
 It should look something like this:
 ```python
-from utils.mod_utils import install_mod, setup_mod, launch_mod
+from utils.game_utils import install_mod, setup_game, launch_mod
 from utils.directories import symlink_mod 
 
 install_mod('/home/bulb/Downloads/Exit Music Redux 1.1.zip', 'Exit Music Redux')
 symlink_mod('Exit Music Redux')
-setup_mod('Exit Music Redux')
+setup_game('Exit Music Redux')
 launch_mod('Exit Music Redux')
 ```
 I removed the Qt code for simplicity.
 * install_mod() extracts a mod archive and places it in the mod/ directory;
 * symlink_mod() symlinks the nonexistant DDLC files to the mod;
-* setup_mod() creates a config file and deletes the lib/ folder within lib/linux-x64_86/ so it doesn't error out
+* setup_game() creates a config file and deletes the lib/ folder within lib/linux-x64_86/ so it doesn't error out
 * launch_mod() runs the mod with parameters provided from the config file.
 
 ## Future plans for Dossier

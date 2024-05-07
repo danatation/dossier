@@ -3,7 +3,10 @@ import logging, hashlib, subprocess, platform, shutil, os, time, atexit, importl
 
 from tomlkit import document, nl, table, comment
 import aiofiles.os
+import aiofiles
+import aiopath
 import patoolib
+
 
 logging.basicConfig(format='%(asctime)s : %(message)s', level=logging.DEBUG)
 log = logging.getLogger(__name__)
@@ -59,35 +62,61 @@ async def list_directories(path: Path) -> list:
 			dirs.append(entry_path)
 	return dirs
 
-def symlink_mod(mod_name: str, copy: bool=False) -> None:
-	'''symlinks every file from the ddlc folder into the mod folder without overwriting anything'''
-	ddlc_dir = get_work_directory('base')	
-	mod_dir = get_mod_directory(mod_name)
-	ddlc_files = sorted(ddlc_dir.rglob('*'))
+async def async_symlink(source, target) -> None:
+	if not await target.exists():
+		await target.symlink_to(source)
+
+async def async_copy(source, target) -> None:
+	async with aiofiles.open(source, 'rb') as src, aiofiles.open(target, 'wb') as tgt:
+		await tgt.write(await src.read())
+
+async def async_mkdir(target) -> None:
+	await target.mkdir(parents=True, exist_ok=True)
+
+async def symlink_mod(mod_name: str, copy: bool = False) -> None:
+	'''
+	symlinks every file from the ddlc folder into the mod folder without overwriting anything
+	code has been made asynchronous with chatgpt i am very sorry it looks hideous
+	'''
+
+	# TODO change this chatgpt ass code
+
+	from utils.game_info import get_main_launch_script
+	
+	ddlc_dir = aiopath.AsyncPath(get_work_directory('base'))    
+	mod_dir = aiopath.AsyncPath(get_mod_directory(mod_name))
+	ddlc_files = []
+	async for path in ddlc_dir.rglob('*'):
+		ddlc_files.append(path)
 
 	for path in ddlc_files:
-		path_parts, base_parts = path.parts, ddlc_dir.parts		
+		path_parts, base_parts = path.parts, ddlc_dir.parts        
 		common_path = path_parts[len(base_parts):]
-		target_path = mod_dir / Path(*common_path)
+		target_path = mod_dir / aiopath.AsyncPath(*common_path)
 		log.debug(f'path: {path}')
 		log.debug(f'target_path: {target_path}')
-		if not target_path.exists():
-			# the good ending REQUIRES the scripts.rpa file to exist
-			# idk if any other ren'py 6 mods do this but here's a very mod specific fix
-			if target_path.name == 'scripts.rpa' and not Path(get_mod_directory(mod_name) / 'game' / 'the_lock.7z').exists():
+
+		if not await target_path.exists():
+			# Handle specific file exclusions
+			if target_path.name == 'scripts.rpa' and not (await (get_mod_directory(mod_name) / 'game' / 'the_lock.7z').exists()):
 				continue
-			# the ren'py launch script defaults to its resolved path so if i symlink it it would just launch ddlc instead of the mod
+			if target_path.name == 'dossier.toml':
+				continue
+			if target_path.parts[-1] == 'saves':
+				continue
 			elif target_path.name == f'{get_main_launch_script(mod_name).name}':
-				shutil.copy(path, target_path)
-			elif path.is_dir():
-				target_path.mkdir()
+				await async_copy(path, target_path)
+			elif await path.is_dir():
+				await async_mkdir(target_path)
 			elif copy:
-				shutil.copy(path, target_path)
+				await async_copy(path, target_path)
 			else:
-				target_path.symlink_to(path)
+				await async_symlink(path, target_path)
+
 
 def delink_mod(mod_name: str) -> None:
 	# TODO rewrite this 
+	# TODO please rewrite this
 	# does not work if ddlc files have been copied instead of linked
 	# it also does not remove folders
 

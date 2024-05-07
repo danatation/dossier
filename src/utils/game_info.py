@@ -6,15 +6,14 @@ import tomlkit
 from tomlkit import document, nl, table, comment
 import patoolib
 
-from utils.directories import *
+from utils.directories import get_mod_directory, get_work_directory
 
 logging.basicConfig(format='%(asctime)s : %(message)s', level=logging.DEBUG)
 log = logging.getLogger(__name__)
 
-def get_main_launch_script(mod_name: str) -> Path:
+def get_main_launch_script(game_dir: Path) -> Path:
 	'''returns the path of the main launch .py script'''
-	mod_dir = get_mod_directory(mod_name)
-	script_paths = sorted(mod_dir.glob('*.py'))
+	script_paths = sorted(game_dir.glob('*.py'))
 	filtered_paths = [script for script in script_paths if script.name != 'DDLC.py']
 	# if filtered_paths has at least 1 file than that means the mod is renpy 7/8
 	if len(filtered_paths) > 0:
@@ -24,16 +23,15 @@ def get_main_launch_script(mod_name: str) -> Path:
 	else:
 		# only runs when symlinking a ren'py 6 mod
 		# cheap way to not make it error out (there are no script files before symlinking)
-		return get_work_dir('base') / 'DDLC.py'
+		return get_work_directory('base') / 'DDLC.py'
 
-def get_renpy_version(mod_name: str) -> int:
-	'''returns the renpy version by checking the amount of ren'py launch scripts in the mod's directory'''
-	mod_dir = get_mod_directory(mod_name)
-	game_scripts = sorted(mod_dir.glob('*.py'))
+def get_renpy_version(game_dir: Path) -> int:
+	'''returns the renpy version by checking the amount of ren'py launch scripts in the game's directory'''
+	game_scripts = sorted(game_dir.glob('*.py'))
 
 	if len(game_scripts) > 1:
 		# mods with a standalone script file will always be renpy7/8
-		log.debug(f'mod is renpy7/8')
+		log.debug(f'The game is Ren\'py 7/8')
 		return 78
 	elif len(game_scripts) == 1:
 		# SOME MODS (COUGH COUGH WINTERMUTE COUGH) update the main DDLC.py script file to be ren'py 7/8
@@ -49,17 +47,16 @@ def get_renpy_version(mod_name: str) -> int:
 	
 		script_md5 = md5_hash.hexdigest()
 		if script_md5 == '74fb8eb686fae8eef33e583da0ebed6e':
-			log.debug(f'mod is renpy6')
+			log.debug(f'The game is Ren\'py 6')
 			return 6
 		else:
-			log.debug(f'mod is renpy7/8, md5 hash is: {script_md5}')
+			log.debug(f'The game is Ren\'py 7/8 since its MD5 hash is {script_md5}')
 			return 78
 	else:
 		log.info(f'mod is renpy6')
 
-def get_execution_directory(mod_name: str) -> Path:
+def get_execution_directory(game_dir: Path) -> Path:
 	'''finds the appropiate ren'py execs inside lib''' 
-	mod_dir = get_mod_directory(mod_name)
 	os = platform.system()
 	arch = platform.machine()
 
@@ -70,25 +67,41 @@ def get_execution_directory(mod_name: str) -> Path:
 	]
 
 	if os != 'Darwin':
-		lib_dir = mod_dir / 'lib'
+		lib_dir = game_dir / 'lib'
 		for path in lib_paths:
 			py_lib_dir = lib_dir / path
 			if py_lib_dir.exists():
 				return py_lib_dir
 		else:
-			log.error(f'mod_dir couldn\'t be found!')
+			log.error(f'The game directory couldn\'t be found!')
 			return 1
 	elif os == 'Darwin':
 		# there's a high chance this doesn't even work lol
-		lib_dir = mod_dir / f'{get_main_launch_script(mod_name).stem}.app' / Contents / MacOS 
-		if get_renpy_version() == 6:
+		lib_dir = game_dir / f'{get_main_launch_script(game_dir).stem}.app' / Contents / MacOS 
+		if get_renpy_version(game_dir) == 6:
 			return lib_dir / 'lib' / f'{os.lower()}-{arch}'
 		else:
 			return lib_dir
 
-async def get_mod_config_value(mod_name: str, config_category: str, config_key: str) -> Union[str, int]:
-	config_path = get_mod_directory(mod_name) / 'game' / 'dossier.toml'
+def parse_game_config(game_dir: Path) -> dict:
+	config_path = game_dir / 'game' / 'dossier.toml'
+	if not config_path.exists():
+		from utils.game_utils import setup_game
+		setup_game(game_dir)
+
 	with open(config_path, 'r') as f:
 		config_data = tomlkit.parse(f.read())
 
-	return config_data[config_category][config_key]
+	overridable_config_options = ['different_save_dir', 'skip_splash_scr', 'skip_menu', 'discord_rpc']
+	for option in overridable_config_options:
+		if config_data['options'][option] == '':
+			dossier_config_path = Path.cwd() / 'config.toml'
+			with open(dossier_config_path, 'r') as f:
+				dossier_config_path = tomlkit.parse(f.read())
+				config_data['options'][option] = dossier_config_path['default_config_options'][option]
+	return config_data
+			
+	# config_data = parse_game_config(mod_name)
+	# config_value = config_data[config_category][config_key]
+
+# def get_mod_config_value(mod_name: str, config_category: str, config_key: str) -> Union[str, int]:
