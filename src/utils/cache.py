@@ -1,42 +1,35 @@
-import logging, asyncio
 from pathlib import Path
+from .. import log
 
-import tomlkit
+from src.utils.game_config import parse_game_config
+from src.utils.game_info import get_resolved_game_path
+
 import msgpack
 
-from utils.directories import get_work_directory, list_directories, get_mod_directory
-from utils.game_info import parse_game_config
+def cache_library() -> None:
+	cache_path = Path.cwd() / 'cache'
+	cache_path.mkdir(exist_ok=True)
+	library_dict = {}
 
-logging.basicConfig(format='%(asctime)s : %(message)s', level=logging.DEBUG)
-log = logging.getLogger(__name__)
+	ddlc_config = parse_game_config(Path.cwd() / 'base')
+	library_dict['base'] = ddlc_config['info']['nickname']
 
-async def async_parse_game_config(game_dir: Path):
-	'''parse_game_config() but asynchronous'''
-	
-	return parse_game_config(game_dir)
+	mods_path = Path.cwd() / 'mods'
+	for game in sorted(mods_path.glob('*')):
+		game_config = parse_game_config(get_resolved_game_path(game))
+		library_dict[game.name] = game_config['info']['nickname']
 
-async def update_library_cache() -> None:
-	'''condenses your mods and config files into a dictionary for msgpack to make into a convienent little cache thing'''
+	log.debug(f'library_dict: "{library_dict}')
 
-	mod_dirs = await list_directories(get_work_directory('mods'))
-	cache_dict = {}
-	cache_dict['base'] = await async_parse_game_config(get_work_directory('base'))
+	with open(cache_path / 'library.msgpack', 'wb') as f:
+		library_cache = msgpack.packb(library_dict)
+		f.write(library_cache)
 
-	for mod in mod_dirs:
-		config_dict = await async_parse_game_config(get_mod_directory(mod))
-		cache_dict[mod.name] = config_dict
+def parse_cache(cache_type: str) -> dict:
+	cache_path = Path.cwd() / 'cache'
+	msgpack_path = cache_path / f'{cache_type}.msgpack'
 
-	cache_path = get_work_directory('cache') / 'library.msgpack'
-	
-	with open(cache_path, 'wb') as f:
-		msgpack_data = msgpack.packb(cache_dict)
-		f.write(msgpack_data)
-
-def read_library_cache() -> dict:
-	'''unpacks library cache'''
-
-	cache_path = get_work_directory('cache') / 'library.msgpack'
-
-	with open(cache_path, 'rb') as f:
-		binary_data = f.read()
-		return msgpack.unpackb(binary_data)
+	if msgpack_path.exists():
+		with open(msgpack_path, 'rb') as f:
+			binary_data = f.read()
+			return msgpack.unpackb(binary_data)

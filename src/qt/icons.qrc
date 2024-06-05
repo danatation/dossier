@@ -1,8 +1,0 @@
-<RCC>
-  <qresource prefix="white_icons">
-    <file alias="test_white">bootstrap-icons/white/wrench.svg</file>
-  </qresource>
-  <qresource prefix="black_icons">
-    <file alias="test_black">bootstrap-icons/black/wrench.svg</file>
-  </qresource>
-</RCC>
