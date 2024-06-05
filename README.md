@@ -21,6 +21,10 @@ launch_mod('/home/bulb/Downloads/Exit Music Redux 1.1.zip')
 * setup_game() creates a config file and deletes the lib/ folder within lib/linux-x64_86/ so it doesn't error out
 * launch_game() runs the mod with parameters provided from the config file.
 
+## Libraries used
+* [rpatool](https://github.com/Shizmob/rpatool) - Used to extract .rpa files
+* [unrpyc](https://github.com/CensoredUsername/unrpyc) - Used to decompile .rpyc files
+
 ## Future plans for Dossier
 * For ~~it~~ the GUI to work 🙏🙏
 * Asset Viever - With the help of rpatool and unrpyc, we can look inside the guts of any Ren'Py game. I plan to extract a whole mod to a different directory and let you look inside the mod. Maybe even make it so you can directly edit the mod itself(partially working)
