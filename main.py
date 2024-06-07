@@ -10,4 +10,4 @@ from pathlib import Path
 
 dossier.check_install()
 
-game_assets.extract_game_assets(Path.cwd() / 'base')
+game_assets.extract_game_assets(Path.cwd() / 'base') 

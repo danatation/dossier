@@ -29,6 +29,12 @@ import types
 import pickle
 import struct
 
+try:
+    # only available (and needed) from 3.4 onwards.
+    from importlib.machinery import ModuleSpec
+except:
+    pass
+
 if PY3:
     from io import BytesIO as StringIO
 else:
@@ -402,9 +408,14 @@ class FakePackageLoader(object):
     this ensures that any attempt to get a submodule from module *root*
     results in a FakePackage, creating the illusion that *root* is an
     actual package tree.
+
+    This class is both a `finder` and a `loader`
     """
     def __init__(self, root):
         self.root = root
+
+    # the old way of loading modules. find_module returns a loader for the
+    # given module. In this case, that is this object itself again.
 
     def find_module(self, fullname, path=None):
         if fullname == self.root or fullname.startswith(self.root + "."):
@@ -412,8 +423,20 @@ class FakePackageLoader(object):
         else:
             return None
 
+    # the new way of loading modules. It returns a ModuleSpec, that has
+    # the loader attribute set to this class.
+
+    def find_spec(self, fullname, path, target=None):
+        if fullname == self.root or fullname.startswith(self.root + "."):
+            return ModuleSpec(fullname, self)
+        else:
+            return None
+
+    # loader methods. This loads the module.
+
     def load_module(self, fullname):
         return FakePackage(fullname)
+
 
 # Fake unpickler implementation
 
@@ -538,22 +561,22 @@ class SafePickler(pickle.Pickler if PY2 else pickle._Pickler):
     the classes themselves, and we need to override the method used for normally saving classes.
     """
 
-    def save_global(self, obj, name=None, pack=struct.pack):
+    def save_global(self, obj, name=None, pack=None):
         if isinstance(obj, FakeClassType):
             if PY2:
-                self.write(pickle.GLOBAL + obj.__module__ + '\n' + obj.__name__ + '\n')
+                self.write(pickle.GLOBAL
+                           + obj.__module__ + '\n' + obj.__name__ + '\n')
             elif self.proto >= 4:
                 self.save(obj.__module__)
                 self.save(obj.__name__)
-                self.write(STACK_GLOBAL)
+                self.write(pickle.STACK_GLOBAL)
             else:
-                self.write(pickle.GLOBAL +
-                    (obj.__module__ + '\n' + obj.__name__ + '\n').decode("utf-8")
-                )
+                self.write(pickle.GLOBAL
+                           + (obj.__module__ + '\n' + obj.__name__ + '\n').decode("utf-8"))
             self.memoize(obj)
             return
 
-        pickle.Pickler.save_global(self, obj, name, pack)
+        super().save_global(obj, name)
 
 # the main API
 

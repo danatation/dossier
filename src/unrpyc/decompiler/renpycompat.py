@@ -42,6 +42,10 @@ SPECIAL_CLASSES = [set, frozenset]
 class oldset(set):
     __module__ = "__builtin__"
 
+    def __reduce__(self):
+        cls, args, state = super().__reduce__()
+        return (set, args, state)
+
 
 oldset.__name__ = "set"
 SPECIAL_CLASSES.append(oldset)
@@ -49,6 +53,10 @@ SPECIAL_CLASSES.append(oldset)
 
 class oldfrozenset(frozenset):
     __module__ = "__builtin__"
+
+    def __reduce__(self):
+        cls, args, state = super().__reduce__()
+        return (frozenset, args, state)
 
 
 oldfrozenset.__name__ = "frozenset"
@@ -161,7 +169,8 @@ CLASS_FACTORY = magic.FakeClassFactory(SPECIAL_CLASSES, magic.FakeStrict)
 
 
 def pickle_safe_loads(buffer: bytes):
-    return magic.safe_loads(buffer, CLASS_FACTORY, {"collections",}, encoding="ASCII", errors="strict")
+    return magic.safe_loads(
+        buffer, CLASS_FACTORY, {"collections"}, encoding="ASCII", errors="strict")
 
 
 def pickle_safe_dumps(buffer: bytes):

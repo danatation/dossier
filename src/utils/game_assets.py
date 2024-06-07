@@ -3,9 +3,8 @@ from .. import log
 import sys
 
 from src import rpatool
-from src.unrpyc.decompiler.renpycompat import renpy
-from src.unrpyc import decompiler, unrpyc
-
+from src.unrpyc.utils import decompile_rpyc
+	 
 def extract_game_assets(game_path: Path) -> None:
 	assets_path = game_path / 'game' / 'assets' 
 	assets_path.mkdir(exist_ok=True)
@@ -27,4 +26,10 @@ def extract_game_assets(game_path: Path) -> None:
 			with open(subdir_path / file, 'wb') as f:
 				f.write(data)
 			if file_path.suffix == '.rpyc':
-				unrpyc.decompile_rpyc(file_path)
+				log.debug(f'file_name: {file_path.name}')
+				try:
+					decompile_rpyc(file_path)
+				except Exception:
+					log.warn(f'Couldn\'t decompile. Skipping...')
+				else:
+					log.debug(f'Succesfully decompiled {file_path.stem}!')
