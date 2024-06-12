@@ -1,9 +1,9 @@
 from pathlib import Path
-from .. import log
-import shutil, time, subprocess, os
+from src import log
+import shutil, time, subprocess, os, atexit
 
 from src.utils.game_info import get_resolved_game_path, get_py_script_path, get_execution_path
-from src.utils.game_config import parse_game_config, create_game_config
+from src.utils.game_config import parse_game_config, create_game_config, set_game_config_value
 
 import tomlkit, patoolib
 from tomlkit import document, nl, table, comment, parse
@@ -13,7 +13,6 @@ def extract_game(archive_path: Path) -> None:
 	
 	if archive_path.exists() and not game_path.exists():
 		patoolib.extract_archive(str(archive_path), outdir=str(game_path))
-		setup_game(game_path)
 
 def copy_game_files(game_path: Path, symlinking: bool=False) -> None:
 	'''
@@ -48,9 +47,9 @@ def copy_game_files(game_path: Path, symlinking: bool=False) -> None:
 			shutil.copy(file, target_path)
 
 def setup_game(game_path: Path) -> None:
-
 	py_script = get_py_script_path(game_path)
 
+	config_path = game_path / 'game' / 'config.toml'
 	if not config_path.exists():
 		create_game_config(game_path)
 
@@ -68,9 +67,8 @@ def setup_game(game_path: Path) -> None:
 	log.debug(f'Gave game executable permissions (Linux safety catch)')
 
 def launch_game(game_path: Path) -> None:
-	
 	exec_path = get_execution_path(game_path) / get_py_script_path(game_path).stem
-	config_data = get_game_config(game_path)
+	config_data = parse_game_config(game_path)
 
 	args = [exec_path]
 	env = os.environ.copy()
@@ -89,4 +87,6 @@ def launch_game(game_path: Path) -> None:
 	if config_data['options']['skip_main_menu'] == True:
 		env['RENPY_SKIP_MAIN_MENU'] = '1'
 
+	set_game_config_value(game_path, 'date_last_played', time.time())
+	log.debug(f'args: {args}')
 	subprocess.run(args, env=env, check=True)

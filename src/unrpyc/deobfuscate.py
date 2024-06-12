@@ -37,7 +37,7 @@ import struct
 import zlib
 from collections import Counter
 
-from decompiler.renpycompat import pickle_safe_loads
+# from decompiler.renpycompat import pickle_safe_loads
 
 # Extractors are simple functions of (fobj, slotno) -> bytes
 # They raise ValueError if they fail

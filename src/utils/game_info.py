@@ -1,6 +1,6 @@
 from pathlib import Path
 from typing import Union
-from .. import log
+from src import log
 import platform
 
 import tomli
@@ -36,9 +36,14 @@ def get_resolved_game_path(game_path: Path) -> Path:
 	'''
 
 	renpy_scripts = sorted(game_path.rglob('*.rp*'))
-	renpy_scripts = [script for script in renpy_scripts if '00' not in script.stem and 'rpym' not in script.suffix]
-	
-	least_nested_file = min(renpy_scripts, key=lambda x: len(x.parts))
+	filtered_scripts = [script for script in renpy_scripts if '00' not in script.stem and 'rpym' not in script.suffix]
+
+	try:
+		least_nested_file = min(filtered_scripts, key=lambda x: len(x.parts))
+	except ValueError as err:
+		log.error(f'get_resolved_game_path() failed! ({game_path})')
+		log.error(f'renpy_scripts: {renpy_scripts}')
+		log.error(f'filtered_scripts: {filtered_scripts}')
 
 	# Assuming the file is inside of game/, we return game/'s parent folder
 	log.debug(f'Returned game path: "{least_nested_file.parents[1]}"')
