@@ -26,6 +26,13 @@ class Ui_Dialog(object):
         Dialog.resize(441, 286)
         self.gridLayout_7 = QGridLayout(Dialog)
         self.gridLayout_7.setObjectName(u"gridLayout_7")
+        self.buttonBox = QDialogButtonBox(Dialog)
+        self.buttonBox.setObjectName(u"buttonBox")
+        self.buttonBox.setOrientation(Qt.Horizontal)
+        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
+
+        self.gridLayout_7.addWidget(self.buttonBox, 1, 0, 1, 1)
+
         self.importLayout = QGridLayout()
         self.importLayout.setObjectName(u"importLayout")
         self.nameGroupBox = QGroupBox(Dialog)
@@ -77,13 +84,6 @@ class Ui_Dialog(object):
 
 
         self.gridLayout_7.addLayout(self.importLayout, 0, 0, 1, 1)
-
-        self.buttonBox = QDialogButtonBox(Dialog)
-        self.buttonBox.setObjectName(u"buttonBox")
-        self.buttonBox.setOrientation(Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
-
-        self.gridLayout_7.addWidget(self.buttonBox, 1, 0, 1, 1)
 
 
         self.retranslateUi(Dialog)

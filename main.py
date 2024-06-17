@@ -1,11 +1,9 @@
-from src import log
-from pathlib import Path	
-import importlib, sys
+import importlib
+import sys
 
 from PySide6.QtWidgets import QApplication
 
-from src.utils import dossier, file_processing, game_config, game_info, game_utils, spreadsheet
-import src.utils.gui.mainwindow
+from src.utils import dossier, file_processing
 
 if __name__ == '__main__':
 	

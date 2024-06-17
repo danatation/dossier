@@ -11,8 +11,24 @@ from tomlkit import document, nl, table, comment, parse
 def extract_game(archive_path: Path) -> None:
 	game_path = Path.cwd() / 'mods' / archive_path.stem
 	
-	if archive_path.exists() and not game_path.exists():
+	if archive_path.exists() and patoolib.is_archive(archive_path) and not game_path.exists():
 		patoolib.extract_archive(str(archive_path), outdir=str(game_path))
+
+	if get_resolved_game_path(game_path) == Path.cwd() / 'mods':
+		# mod expects you to paste the files in game/ and does not supply the game/ folder. create it then dump the files inside (ren'py 6)
+		game_path.joinpath('game').mkdir()
+		game_files = sorted(game_path.rglob('*'))
+		
+		for file in game_files:
+			target_path = game_path / 'game' / file.relative_to(game_path)
+			
+			if not target_path.parent.exists():
+				target_path.parent.mkdir(parents=True)
+
+			if file.is_dir():
+				continue 
+
+			file.replace(target_path)
 
 def copy_game_files(game_path: Path, symlinking: bool=False) -> None:
 	'''

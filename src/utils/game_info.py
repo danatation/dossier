@@ -40,7 +40,7 @@ def get_resolved_game_path(game_path: Path) -> Path:
 
 	try:
 		least_nested_file = min(filtered_scripts, key=lambda x: len(x.parts))
-	except ValueError as err:
+	except ValueError:
 		log.error(f'get_resolved_game_path() failed! ({game_path})')
 		log.error(f'renpy_scripts: {renpy_scripts}')
 		log.error(f'filtered_scripts: {filtered_scripts}')
