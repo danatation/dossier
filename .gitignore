@@ -8,5 +8,4 @@ cache
 testing
 
 __pycache__
-auth_user.msgpack
-config.toml
+dossier.toml

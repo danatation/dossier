@@ -20,14 +20,14 @@ from PySide6.QtWidgets import (QAbstractButton, QApplication, QCheckBox, QDialog
     QLabel, QLineEdit, QPushButton, QScrollArea,
     QSizePolicy, QSpacerItem, QWidget)
 
-class Ui_Options(object):
-    def setupUi(self, Options):
-        if not Options.objectName():
-            Options.setObjectName(u"Options")
-        Options.resize(500, 613)
-        self.gridLayout = QGridLayout(Options)
+class Ui_Dialog(object):
+    def setupUi(self, Dialog):
+        if not Dialog.objectName():
+            Dialog.setObjectName(u"Dialog")
+        Dialog.resize(500, 613)
+        self.gridLayout = QGridLayout(Dialog)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.scrollArea = QScrollArea(Options)
+        self.scrollArea = QScrollArea(Dialog)
         self.scrollArea.setObjectName(u"scrollArea")
         self.scrollArea.setFrameShape(QFrame.StyledPanel)
         self.scrollArea.setFrameShadow(QFrame.Sunken)
@@ -162,7 +162,7 @@ class Ui_Options(object):
 
         self.gridLayout.addWidget(self.scrollArea, 0, 0, 1, 1)
 
-        self.buttonBox = QDialogButtonBox(Options)
+        self.buttonBox = QDialogButtonBox(Dialog)
         self.buttonBox.setObjectName(u"buttonBox")
         self.buttonBox.setOrientation(Qt.Horizontal)
         self.buttonBox.setStandardButtons(QDialogButtonBox.Apply|QDialogButtonBox.Cancel)
@@ -171,31 +171,31 @@ class Ui_Options(object):
         self.gridLayout.addWidget(self.buttonBox, 1, 0, 1, 1)
 
 
-        self.retranslateUi(Options)
+        self.retranslateUi(Dialog)
 
-        QMetaObject.connectSlotsByName(Options)
+        QMetaObject.connectSlotsByName(Dialog)
     # setupUi
 
-    def retranslateUi(self, Options):
-        Options.setWindowTitle(QCoreApplication.translate("Options", u"Dialog", None))
-        self.optionsGeneralInfo.setTitle(QCoreApplication.translate("Options", u"General Info (Mod Name)", None))
-        self.labelNickname.setText(QCoreApplication.translate("Options", u"Nickname", None))
-        self.lineEditNickname.setPlaceholderText(QCoreApplication.translate("Options", u"Mod Name", None))
-        self.labelCategories.setText(QCoreApplication.translate("Options", u"Categories", None))
-        self.lineEditCategories.setPlaceholderText(QCoreApplication.translate("Options", u"Separated by commas,", None))
-        self.labelCustomSaveDirectory.setText(QCoreApplication.translate("Options", u"Custom save directory", None))
-        self.lineEditCustomSaveDirectory.setPlaceholderText(QCoreApplication.translate("Options", u"I would pick game/saves/ if i were you", None))
-        self.browseCustomSaveDirectory.setText(QCoreApplication.translate("Options", u"Browse", None))
-        self.optionsAdvanced.setTitle(QCoreApplication.translate("Options", u"Advanced", None))
-        self.buttonDeleteMod.setText(QCoreApplication.translate("Options", u"Delete mod", None))
-        self.buttonFixBrokenLinks.setText(QCoreApplication.translate("Options", u"Fix broken links", None))
-        self.buttonResetStats.setText(QCoreApplication.translate("Options", u"Reset stats", None))
-        self.buttonDeleteSaves.setText(QCoreApplication.translate("Options", u"Delete saves", None))
-        self.optionsModParameters.setTitle(QCoreApplication.translate("Options", u"Mod parameters", None))
-        self.checkDiscordRPC.setText(QCoreApplication.translate("Options", u"Enable Discord RPC", None))
-        self.checkDefaultSaveDirectory.setText(QCoreApplication.translate("Options", u"Use default Ren'py save directory (game/saves/)", None))
-        self.checkSkipMainMenu.setText(QCoreApplication.translate("Options", u"Skip main menu", None))
-        self.checkSkipSplashScreen.setText(QCoreApplication.translate("Options", u"Skip splash screen", None))
-        self.checkCustomSaveDirectory.setText(QCoreApplication.translate("Options", u"Use custom save directory", None))
+    def retranslateUi(self, Dialog):
+        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
+        self.optionsGeneralInfo.setTitle(QCoreApplication.translate("Dialog", u"General Info", None))
+        self.labelNickname.setText(QCoreApplication.translate("Dialog", u"Nickname", None))
+        self.lineEditNickname.setPlaceholderText(QCoreApplication.translate("Dialog", u"Mod Name", None))
+        self.labelCategories.setText(QCoreApplication.translate("Dialog", u"Categories", None))
+        self.lineEditCategories.setPlaceholderText(QCoreApplication.translate("Dialog", u"Separated by commas,", None))
+        self.labelCustomSaveDirectory.setText(QCoreApplication.translate("Dialog", u"Custom save directory", None))
+        self.lineEditCustomSaveDirectory.setPlaceholderText(QCoreApplication.translate("Dialog", u"I would pick game/saves/ if i were you", None))
+        self.browseCustomSaveDirectory.setText(QCoreApplication.translate("Dialog", u"Browse", None))
+        self.optionsAdvanced.setTitle(QCoreApplication.translate("Dialog", u"Advanced", None))
+        self.buttonDeleteMod.setText(QCoreApplication.translate("Dialog", u"Delete mod", None))
+        self.buttonFixBrokenLinks.setText(QCoreApplication.translate("Dialog", u"Fix broken links", None))
+        self.buttonResetStats.setText(QCoreApplication.translate("Dialog", u"Reset stats", None))
+        self.buttonDeleteSaves.setText(QCoreApplication.translate("Dialog", u"Delete saves", None))
+        self.optionsModParameters.setTitle(QCoreApplication.translate("Dialog", u"Options", None))
+        self.checkDiscordRPC.setText(QCoreApplication.translate("Dialog", u"Enable Discord RPC", None))
+        self.checkDefaultSaveDirectory.setText(QCoreApplication.translate("Dialog", u"Use default Ren'py save directory (game/saves/)", None))
+        self.checkSkipMainMenu.setText(QCoreApplication.translate("Dialog", u"Skip main menu", None))
+        self.checkSkipSplashScreen.setText(QCoreApplication.translate("Dialog", u"Skip splash screen", None))
+        self.checkCustomSaveDirectory.setText(QCoreApplication.translate("Dialog", u"Use custom save directory", None))
     # retranslateUi
 

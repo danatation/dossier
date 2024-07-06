@@ -16,25 +16,25 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractButton, QApplication, QDialog, QDialogButtonBox,
-    QGridLayout, QGroupBox, QLineEdit, QRadioButton,
-    QSizePolicy, QToolButton, QWidget)
+    QGridLayout, QGroupBox, QLayout, QLineEdit,
+    QRadioButton, QSizePolicy, QSpacerItem, QToolButton,
+    QWidget)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(441, 286)
+        Dialog.resize(471, 225)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
+        Dialog.setSizePolicy(sizePolicy)
         self.gridLayout_7 = QGridLayout(Dialog)
         self.gridLayout_7.setObjectName(u"gridLayout_7")
-        self.buttonBox = QDialogButtonBox(Dialog)
-        self.buttonBox.setObjectName(u"buttonBox")
-        self.buttonBox.setOrientation(Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
-
-        self.gridLayout_7.addWidget(self.buttonBox, 1, 0, 1, 1)
-
         self.importLayout = QGridLayout()
         self.importLayout.setObjectName(u"importLayout")
+        self.importLayout.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.nameGroupBox = QGroupBox(Dialog)
         self.nameGroupBox.setObjectName(u"nameGroupBox")
         self.gridLayout_3 = QGridLayout(self.nameGroupBox)
@@ -49,6 +49,8 @@ class Ui_Dialog(object):
 
         self.locationGroupBox = QGroupBox(Dialog)
         self.locationGroupBox.setObjectName(u"locationGroupBox")
+        sizePolicy.setHeightForWidth(self.locationGroupBox.sizePolicy().hasHeightForWidth())
+        self.locationGroupBox.setSizePolicy(sizePolicy)
         self.gridLayout_4 = QGridLayout(self.locationGroupBox)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.locationEdit = QLineEdit(self.locationGroupBox)
@@ -82,8 +84,19 @@ class Ui_Dialog(object):
 
         self.importLayout.addWidget(self.methodGroup, 2, 0, 1, 1)
 
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.importLayout.addItem(self.verticalSpacer, 3, 0, 1, 1)
+
 
         self.gridLayout_7.addLayout(self.importLayout, 0, 0, 1, 1)
+
+        self.buttonBox = QDialogButtonBox(Dialog)
+        self.buttonBox.setObjectName(u"buttonBox")
+        self.buttonBox.setOrientation(Qt.Horizontal)
+        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
+
+        self.gridLayout_7.addWidget(self.buttonBox, 1, 0, 1, 1)
 
 
         self.retranslateUi(Dialog)

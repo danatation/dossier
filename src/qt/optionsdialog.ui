@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Options</class>
- <widget class="QDialog" name="Options">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -50,7 +50,7 @@
        <item row="0" column="0">
         <widget class="QGroupBox" name="optionsGeneralInfo">
          <property name="title">
-          <string>General Info (Mod Name)</string>
+          <string>General Info</string>
          </property>
          <property name="flat">
           <bool>false</bool>
@@ -173,7 +173,7 @@
        <item row="1" column="0">
         <widget class="QGroupBox" name="optionsModParameters">
          <property name="title">
-          <string>Mod parameters</string>
+          <string>Options</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="4" column="0">
