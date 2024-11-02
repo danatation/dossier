@@ -1,4 +1,0 @@
-[submodule "un.rpyc/corrupy"]
-	path = un.rpyc/corrupy
-	url = https://github.com/CensoredUsername/corrupy
-	branch = master
