@@ -1,14 +1,28 @@
+import os
+import sys
+import signal
 from pathlib import Path
-from src.mods import Mod
+from PySide6.QtGui import QGuiApplication
+from PySide6.QtCore import QUrl
+from PySide6.QtQml import QQmlApplicationEngine
 
 
 def main():
-	emr_path = Path.cwd() / 'mods' / 'Exit Music Redux 1.1'
-	emr = Mod(rpath=emr_path, name='Exit Music: Redux')
-	print(emr.apath)
-	print(emr.find_codename())
-	print(emr.find_exec_path())
-	emr.run()
+	app = QGuiApplication(sys.argv)
+	engine = QQmlApplicationEngine()
+
+	signal.signal(signal.SIGINT, signal.SIG_DFL)
+
+	if not os.environ.get('QT_QUICK_CONTROLS_STYLE'):
+		os.environ['QT_QUICK_CONTROLS_STYLE'] = 'org.kde.desktop'
+
+	url = QUrl(f'file://{Path.cwd()}/src/qml/main.qml')
+	engine.load(url)
+
+	if len(engine.rootObjects()) == 0:
+		quit()
+
+	app.exec()
 
 
 if __name__ == '__main__':

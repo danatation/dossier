@@ -157,7 +157,7 @@ cython_debug/
 
 # Dossier
 base/
-mods/
+/mods/
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
